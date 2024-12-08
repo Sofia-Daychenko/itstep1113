@@ -13,3 +13,16 @@ print(car.get_info())
 print(car2.get_info())
 print(car3.get_info())
 
+class Employee:
+    def __init__(self,name,position,salary):
+        self.name=name
+        self.position=position
+        self.salary=salary
+    def get_salary_info(self):
+        return f"Заробітна плата {self.name}: {self.salary}"
+employee = Employee("Марія", "Програміст", 3900)
+employee2 = Employee("Олег", "Головний відділу", 5500)
+employee3 = Employee("Василь", "Веб-дизайнер", 2300)
+print(employee.get_salary_info())
+print(employee2.get_salary_info())
+print(employee3.get_salary_info())
