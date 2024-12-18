@@ -51,6 +51,7 @@ manager.list()
 manager.remove("Зробити домашнє завдання")
 manager.list()
 '''
+import random
 
 class Employee:
     def __init__(self, name, position, salary):
@@ -78,7 +79,29 @@ class Department:
                 print(f"Співробітника {name} видалено з відділу {self.name}.")
 
     def calculate(self):
-        pass
+        total_salary = 0
+        for employee in self.employees:
+            total_salary += employee.salary
+        monthly_values = [
+            random.randint(5900, 10000),
+            random.randint(3360, 8900),
+            random.randint(5800, 13000),
+            random.randint(6700, 15000),
+            random.randint(3400, 10000),
+            random.randint(2600, 5200),
+            random.randint(3500, 9000),
+            random.randint(6900, 10100),
+            random.randint(2000, 4900),
+            random.randint(7500, 9100),
+            random.randint(8730, 12058),
+            random.randint(10000, 18000)
+        ]
+
+        total_sum = sum(monthly_values)
+        total_salary += total_sum
+
+        print(f"Загальна сума зарплат співробітників за рік: {total_salary} $")
+        return total_salary
 
     def list(self):
         if self.employees:
@@ -87,8 +110,8 @@ class Department:
                 print(employee.display())
 
 it_department = Department("ІТ")
-emp1 = Employee("Іван Іваненко", "Програміст", 30000)
-emp2 = Employee("Олена Петрівна", "Тестувальник", 25000)
+emp1 = Employee("Іван Іваненко", "Програміст", 9000)
+emp2 = Employee("Олена Петрівна", "Тестувальник", 5000)
 it_department.add(emp1)
 it_department.add(emp2)
 it_department.list()
