@@ -24,7 +24,7 @@ class Coinmarket:
         for i in rows:
             nameCoin=i.find("p",class_="coin-item-name") #Назва монети
             name=nameCoin.text.strip() if nameCoin else "Назва монети відсутня"
-            priceCoin=i.find("span") #опис фильму
+            priceCoin=i.find("div", class_="sc-b3fc6b7-0 dzgUIj") #опис фильму
             price = priceCoin.text.strip() if priceCoin else "Ціна монети відсутня"
 
             coins.append(
@@ -37,8 +37,8 @@ class Coinmarket:
     def printInfo(self,coins):
         for i,j in enumerate(coins,start=1):
             print(i,") Монета")
-            print('\t','Назва:',coins['Назва:'])
-            print('\t', 'Ціна:', coins['Ціна:'])
+            print('\t','Назва:',j['Назва:'])
+            print('\t', 'Ціна:', j['Ціна:'])
         print('='*40,'\n')
 
 if __name__ == "__main__":
@@ -47,8 +47,9 @@ if __name__ == "__main__":
     try:
         parse.fetch_page()
         # f=parse.get_info()
-        # в3                                                                                            .print_info()
-        coin=в3                                                                                             .getInfo()
+        # в3.print_info()
+        coin=parse.getInfo()
+        parse.printInfo(coin)
     except Exception as e:
         print(e)
 
