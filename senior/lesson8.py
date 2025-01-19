@@ -1,23 +1,25 @@
 # скорочення спрощення коду, але без повторного використання
 # ітератори
-# class Counter:
-#    def __init__(self,maxNum):
-#        self.maxNum=maxNum
-#        self.kol=0
-#    def __iter__(self):
-#        self.kol=0
-#        return self
-#    def __next__(self):
-#        self.kol+=1
-#        if self.kol > self.maxNum:
-#            raise StopIteration
-#        return self.kol
-# count=Counter(3)
+class Counter:
+   def __init__(self,maxNum):
+       self.maxNum=maxNum
+       self.kol=0
+   def __iter__(self):
+       self.kol=0
+       return self
+   def __next__(self):
+       self.kol+=1
+       if self.kol > self.maxNum:
+           raise StopIteration
+       return self.kol
+count=Counter(3)
 # for i in count:
 #    print(i, end =' ')
-# print(next(count))
-# print(iter(count))
-# print(next(count))
+print(count.__next__())
+print(count.__iter__())
+print(next(count))
+print(iter(count))
+print(next(count))
 
 
 # num=[4,5,9,6,1]
@@ -60,17 +62,3 @@
 #     print(i,end=' ')
 
 #декоратери @ допоміжна функція
-def calcAudit(num):
-    def calcAudit(*args,**kwargs):
-        try:
-            res=num(*args,**kwargs)
-        except Exception as e:
-            print('Сталася якась проблема',e)
-        else:
-            print('Результат: ',res)
-    return calcAudit
-@calcAudit
-def calc(num):
-    return eval(num)
-calc('2+2*3-4')
-calc('(12+2)*3-1')

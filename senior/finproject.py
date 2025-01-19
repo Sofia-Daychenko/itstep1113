@@ -1,14 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 
-
 class Minfin:
-    def __init__(self, url):
-        self.url = url
+    def __init__(self,url):
+        self.url=url
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
         }
-        self.soup = None
+        self.soup=None
 
     def fetch_page(self):
         # Sending the request
@@ -28,8 +27,8 @@ class Minfin:
             name = name_currency.text.strip() if name_currency else "Currency name not available"
             price = i.find_all("td")
             if len(price) >= 3:
-                purchase = price[1].text.strip().replace(',', '')  # Remove commas in numbers
-                sales = price[2].text.strip().replace(',', '')  # Remove commas in numbers
+                purchase = price[1].text.strip()
+                sales = price[2].text.strip()
             else:
                 purchase = "Not available"
                 sales = "Not available"
@@ -48,7 +47,7 @@ class Minfin:
             print("\tName:", j['Name'])
             print("\tPurchase:", j['Purchase'])
             print("\tSales:", j['Sales'])
-        print('=' * 40, '\n')
+        print('='*40, '\n')
 
 
 if __name__ == "__main__":
@@ -73,21 +72,13 @@ if __name__ == "__main__":
     if currency_choice < 1 or currency_choice > len(currency):
         print("Invalid choice!")
         exit()
-
-    try:
-        amount = float(input("Enter the amount: "))
-        selected_currency = currency[currency_choice - 1]
-
-        if operation == 1:
-            sales = float(selected_currency['Sales'])  # Convert to float
-            result = amount / sales
-            print(f"You can buy {result:.2f} {selected_currency['Name']}")
-        else:
-            purchase = float(selected_currency['Purchase'])  # Convert to float
-            result = amount * purchase
-            print(f"You will get {result:.2f} UAH")
-    except ValueError:
-        print("Invalid amount or currency data!")
-
+    amount = (int(input("Введіть суму: ")))
+    selected_currency = currency[currency_choice - 1]
+    if operation == 1:
+        result = amount / selected_currency['Продаж']
+        print(f"Ви можете купити {result:.2f} {selected_currency['Назва']}")
+    else:
+        result = amount * selected_currency['Купівля']
+        print(f"Ви отримаєте {result:.2f} UAH")
 
 
